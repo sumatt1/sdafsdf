@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
 
 export default {
     darkMode: ["class"],
@@ -16,6 +17,7 @@ export default {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'
   			},
+          'card-back': 'hsl(var(--card-back-color))', // Custom card back color
   			popover: {
   				DEFAULT: 'hsl(var(--popover))',
   				foreground: 'hsl(var(--popover-foreground))'
@@ -82,13 +84,42 @@ export default {
   				to: {
   					height: '0'
   				}
-  			}
+  			},
+        'flip-out': {
+          '0%': { transform: 'rotateY(0deg)' },
+          '100%': { transform: 'rotateY(-180deg)' },
+        },
+        'flip-in': {
+          '0%': { transform: 'rotateY(180deg)' },
+          '100%': { transform: 'rotateY(0deg)' },
+        },
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out'
+  			'accordion-up': 'accordion-up 0.2s ease-out',
+        'flip-out': 'flip-out 0.5s ease-in-out',
+        'flip-in': 'flip-in 0.5s ease-in-out',
   		}
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    plugin(function({ addUtilities }) {
+      addUtilities({
+        '.perspective': {
+          perspective: '1000px',
+        },
+        '.transform-style-3d': {
+          'transform-style': 'preserve-3d',
+        },
+        '.backface-hidden': {
+          'backface-visibility': 'hidden',
+          '-webkit-backface-visibility': 'hidden',
+        },
+        '.rotate-y-180': {
+            transform: 'rotateY(180deg)',
+        },
+      })
+    })
+  ],
 } satisfies Config;
