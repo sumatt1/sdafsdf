@@ -42,7 +42,7 @@ export function Card({ icon: Icon, isFlipped, isMatched, onClick }: CardProps) {
 
         {/* Card Back (Pattern/Color) */}
         <div className={cn(
-            "absolute w-full h-full backface-hidden rounded-lg bg-[hsl(var(--card-back-color))]",
+            "absolute w-full h-full backface-hidden rounded-lg bg-card-back", // Use themed card-back color
             "flex items-center justify-center" // Optional: Add a pattern or logo here
             )}
             style={{ backfaceVisibility: 'hidden'}}

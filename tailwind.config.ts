@@ -17,7 +17,7 @@ export default {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'
   			},
-          'card-back': 'hsl(var(--card-back-color))', // Custom card back color
+          'card-back': 'hsl(var(--card-back-color))', // Custom card back color variable from globals.css
   			popover: {
   				DEFAULT: 'hsl(var(--popover))',
   				foreground: 'hsl(var(--popover-foreground))'
